@@ -4,6 +4,7 @@ class Calc
 
   def initialize
     @table = {}
+    @value = 0.0
   end
 
   def run(s)
@@ -18,7 +19,7 @@ class Calc
       when /[[:alpha:]]/
         m = /\A([[:alpha:]]+)(.*)\Z/m.match(s)
         name = m[1]; s = m[2]
-        if name =~ /sin|cos|tan|asin|acos|atan|exp|log|sqrt|store|PI|E/
+        if name =~ /sin|cos|tan|asin|acos|atan|exp|log|sqrt|PI|E|v/
           result << [$&.to_sym, nil]
         else
           result << [:id, name]
@@ -49,7 +50,6 @@ class Calc
   #        |  statement;
   # statement: expression_0
   #   | ID '=' expression
-  #   | 'store' ID
   #   ;
   # expression_0: expression {print @value};
   # expression: expression '+' factor1
@@ -66,19 +66,23 @@ class Calc
   # power: primary ** power
   #   | primary
   #   ;
-  # primary: ID | NUM | 'PI' | 'E' | '(' expression ')' | function '(' expression ')';
+  # primary: ID | NUM | 'PI' | 'E' | '(' expression ')' | function '(' expression ')'| 'v';
   # function: 'sin' | 'cos' | 'tan' | 'asin' | 'acos' | 'atan' | 'exp' | 'log' ;
 
   # error => return nil
 
   def parse(tokens)
+    @error_already_issued = false
     tokens.reverse!
-    return unless statement(tokens)
+    return unless statement(tokens) # error => return
+    return if tokens == [] # no input => return (success)
     token = tokens.pop.to_a
     while token[0] == :';'
-      return unless statement(tokens)
+      return unless statement(tokens) # error => return
+      return if tokens == [] # no input => return (success)
       token = tokens.pop.to_a
     end
+    syntax_error unless token == []
   end
 
   private
@@ -91,7 +95,10 @@ class Calc
       b = tokens.pop.to_a
       if  b[0] == :'='
         c = expression(tokens)
-        return nil if c == nil
+        unless c
+          syntax_error
+          return false
+        end
         install(a, c)
         @value = c
       else
@@ -99,15 +106,8 @@ class Calc
         tokens.push(token)
         expression_0(tokens)
       end
-    when :store
-      token = tokens.pop.to_a
-      unless token[0] == :id
-        syntax_error
-        return nil
-      end
-      install(token[1], @value.to_f)
     when nil
-      return nil
+      return false
     else
       tokens.push(token)
       expression_0(tokens)
@@ -116,7 +116,7 @@ class Calc
 
   def expression_0(tokens)
     b = expression(tokens)
-    return nil if b == nil
+    return false unless b
     @value = b
     b = b.to_i if b == b.floor
     print "#{b}\n"
@@ -124,18 +124,26 @@ class Calc
   end
 
   def expression(tokens)
-    return nil if (a = factor0(tokens)) == nil
+    return false unless (a = factor0(tokens))
     while true
       token = tokens.pop.to_a
       case token[0]
       when :'+'
         b = factor1(tokens)
-        break nil if b == nil
+        unless b
+          syntax_error
+          break false
+        end
         a = a+b
       when :'-'
         b = factor1(tokens)
-        break nil if b == nil
+        unless b
+          syntax_error
+          break false
+        end
         a = a-b
+      when nil
+        return a
       else
         tokens.push(token)
         break a
@@ -148,9 +156,9 @@ class Calc
     case token[0]
     when :'-'
       b = factor1(tokens)
-      b ? -b : nil
+      b ? -b : false
     when nil
-      nil
+      false
     else
       tokens.push(token)
       factor1(tokens)
@@ -158,22 +166,30 @@ class Calc
   end
 
   def factor1(tokens)
-    return nil if (a = power(tokens)) == nil
+    return false unless (a = power(tokens))
     while true
       token = tokens.pop.to_a
       case token[0]
       when :'*'
         b = power(tokens)
-        break nil if b == nil
+        unless b
+          syntax_error
+          break false
+        end
         a = a*b
       when :'/'
         b = power(tokens)
-        break nil if b == nil
+        unless b
+          syntax_error
+          break false
+        end
         if b == 0
           print "Division by 0.\n"
-          break nil
+          break false
         end
         a = a/b
+      when nil
+        break a
       else
         tokens.push(token)
         break a
@@ -182,12 +198,19 @@ class Calc
   end
 
   def power(tokens)
-    return nil if (a = primary(tokens)) == nil
+    return false unless (a = primary(tokens))
     token = tokens.pop.to_a
-    if token[0] == nil
+    case token[0]
+    when :'**'
+      b = power(token)
+      if b
+        a**b
+      else
+        syntax_error
+        false
+      end
+    when nil
       a
-    elsif token[0] == :'**'
-      a ** power(tokens)
     else
       tokens.push(token)
       a
@@ -199,8 +222,8 @@ class Calc
     case token[0]
     when :id
       a = lookup(token[1])
-      print "Variable #{token[1]} not defined.\n" if a == nil
-      a
+      print "Variable #{token[1]} not defined.\n" unless a
+      a ? a : false
     when :num
       token[1]
     when :PI
@@ -209,30 +232,32 @@ class Calc
       E
     when :'('
       b = expression(tokens)
-      return nil if b == nil
+      return false unless b
       unless tokens.pop.to_a[0] == :')'
         syntax_error
-        return nil
+        return false
       end
       b
     when :sin, :cos, :tan, :asin, :acos, :atan, :exp, :log, :sqrt
       f = token[0]
       unless tokens.pop.to_a[0] == :'('
         syntax_error
-        return nil
+        return false
       end
       b = expression(tokens)
-      return nil if b == nil
+      return false unless b
       unless tokens.pop.to_a[0] == :')'
         syntax_error
-        return nil
+        return false
       end
       method(f).call(b)
+    when :v
+      @value
     when nil
-      nil
+      false
     else
       syntax_error
-      nil
+      false
     end
   end
 
@@ -244,6 +269,7 @@ class Calc
   end
 
   def syntax_error
-    print "Syntax error.\n"
+    print "Syntax error.\n" unless @error_already_issued
+    @error_already_issued = true
   end
 end

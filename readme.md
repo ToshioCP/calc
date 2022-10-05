@@ -30,17 +30,19 @@ $
 2. Then a prompt appears '$ calc > '
 3. Type an expression like '2+3' and push Enter key, then the answer '5' appears.
 4. Type 'quit' or 'exit', then the program will finish.
+5. You can also use it as a one line calculator like `$ calc "10*20+30"`.
 
 ### feature
 
 - Operatores: `+`, `-`, `*`, `/`, `**`(power), `-`(unary minus), `(` and `)`
+- keywords: `sin`, `cos`, `tan`, `asin`, `acos`, `atan`, `exp`, `log`, `sqrt` and `v`.
 - Variable can be used.
-It is a string of alphabets.
+It is a string of alphabets without the keywords above.
 It can be used in any place in the expression.
 `variable_name = expression` is the syntax to define the variable.
 A defined variable can be used in an expression instead of a number.
 - calc remembers the value of the previous calculation.
-`store variable_name` stores the value into the variable.
+The value is referred by the special variable `v`.
 - Mathematical functions can be used such as `sin`, `cos`, `tan`, `asin`, `acos`, `atan`, `exp`, `log` and `sqrt`.
 
 ### License
@@ -82,17 +84,19 @@ $
 2. プロンプト「$ calc >」が現れる
 3. 式（例えば2+3）と入力し、エンターキーを押すと、答え「5」が表示される
 4. 「quit」または「exit」とタイプするとプログラムは終了する
+5. 引数を付けて一行計算アプリとしても使える。（例）`$ calc "10*20+30"`
 
 ### 特長
 
 - 次の演算記号が使える。`+`, `-`, `*`, `/`, `**`(累乗), `-`(単項マイナス), `(`, `)`
+- 予約語: `sin`, `cos`, `tan`, `asin`, `acos`, `atan`, `exp`, `log`, `sqrt`, `v`
 - 変数が使える。
 変数はアルファベットからなり文字列である。
 変数は式の中のどこにでも使うことができる。
 `変数名 = 式` により、変数に値を代入することができる。
 定義された変数は式の中で使うことができる
 - calcは直前の計算結果を記憶している。
-`store 変数名` によって、その値を変数に代入することができる
+変数`v` でその値を参照できる
 - 関数が使える。`sin`, `cos`, `tan`, `asin`, `acos`, `atan`, `exp`, `log`, `sqrt`.
 
 ### ライセンス
