@@ -1,0 +1,20 @@
+#!/usr/bin/env ruby
+
+require 'readline'
+require 'calc'
+
+calc = Calc.new
+if ARGV[0] =~ /--help|-h/
+  $stderr.print "Usage: calc [expression]\n"
+elsif ARGV.size == 1
+  print "#{calc.run(ARGV[0])}\n"
+else
+  while buf = Readline.readline("calc > ", true)
+    break if buf == "quit" || buf == "exit" || buf == "q"
+    begin
+      print "#{calc.run(buf)}\n"
+    rescue => evar
+      print "#{evar.message[1..-1]}\n" # remove the newline at the beginning of the message
+    end
+  end
+end

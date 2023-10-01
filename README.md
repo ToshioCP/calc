@@ -5,13 +5,13 @@
 The program 'calc' is a simple calculator written in Ruby programming language.
 It is run from the command line like this.
 
-~~~
+```
 $ calc
 calc > 10+20
 30
 calc > quit
 $
-~~~
+```
 
 ### Prerequisites
 
@@ -22,7 +22,8 @@ $
 
 1. Click the 'Code' button, then click 'Download ZIP' in the small dialog.
 2. Unzip the downloaded Zip file, then a new directory 'calc' will be created.
-3. Run "ruby install.rb" under the directory 'calc', then the program 'calc' is installed in '$HOME/bin'.
+3. Type `gem build calc` under the directory 'calc', then the gem file 'calc-0.1.gem' is created. The number `0.1` is the version of Calc.
+4. Type `gem install calc-0.1`.
 
 ### How to use the program.
 
@@ -44,28 +45,34 @@ A defined variable can be used in an expression instead of a number.
 - calc remembers the value of the previous calculation.
 The value is referred by the special variable `v`.
 - Mathematical functions can be used such as `sin`, `cos`, `tan`, `asin`, `acos`, `atan`, `exp`, `log` and `sqrt`.
+- The library file `lib/calc/calc.rb` is made by Racc, which is a ruby version `yacc`.
+The source file is `racc/calc.y`.
+See `racc/doc.md` for details.
+
+### Rakefile
+
+You can do the following
+
+- `rake rdoc`: Create documents under `docs` directory.
+- `rake test`: Run test programs under `test` directory.
 
 ### License
 
-Copyright (C) 2022  ToshioCP (Toshio Sekiya)
-
-The programs packed in this repository are free; you can redistribute them and/or modify them under the terms of the GNU General Public License as published by the Free Software Foundation; either version 3 of the License or, at your option, any later version.
-
-They are distributed in the hope that they will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-See the [GNU General Public License](https://www.gnu.org/licenses/gpl-3.0.html) for more details.
+GPL ver 3 or later.
+See [License.md](License.md) for details.
 
 ### これは何のプログラム？
 
 Rubyプログラム`calc.rb`は簡易電卓です。
 コマンドラインから次のように起動できます。
 
-~~~
+```
 $ calc
 calc > 10+20
 30
 calc > quit
 $
-~~~
+```
 
 ### 動作条件
 
@@ -76,7 +83,8 @@ $
 
 1. 'Code'ボタンをクリックし、現れた小さなダイアログの'Download ZIP'をクリックする
 2. ダウンロードしたZipファイルを解凍する。これにより新しく「calc」ディレクトリが作られ、その中にすべてのファイルが収められる
-3. 「ruby install.rb」を実行することにより、プログラム「calc」が「$HOME/bin」直下にインストールされる
+3. 「gem build calc」を実行することにより、gemファイル「calc-0.1.gem」が作られる。
+4. 「gem install calc-0.1」とタイプし、gemをインストールする。
 
 ### 使い方
 
@@ -98,12 +106,24 @@ $
 - calcは直前の計算結果を記憶している。
 変数`v` でその値を参照できる
 - 関数が使える。`sin`, `cos`, `tan`, `asin`, `acos`, `atan`, `exp`, `log`, `sqrt`.
+- ライブラリ・ファイル`lib/calc/calc.rb`はRaccによって生成されたものである。
+そのソースファイルは`racc/calc.y`。
+詳しい説明は、`racc/oc.md`を参照のこと。
+
+### Rakefile
+
+次のことができます。
+
+- `rake rdoc`: `docs`ディレクトリ以下にドキュメントを生成する
+- `rake test`: `test`ディレクトリの下にあるテストプログラムを実行する
 
 ### ライセンス
 
-Copyright (C) 2022  ToshioCP (関谷 敏雄)
+Copyright (C) 2022,2023  ToshioCP (関谷 敏雄)
 
 このプログラムは、フリーソフトウェア財団によって発行された「GNU一般公衆利用許諾書」(バージョン3か、希望によってはそれ以降のバージョンのうちどれか)の定める条件の下で再頒布または改変することができる。
 
 このプログラムは有用であることを願って頒布されますが、*全くの無保証* です。商業可能性の保証や特定の目的への適合性は、言外に示されたものも含め全く存在しません。
 詳しくは[GNU 一般公衆利用許諾書(英語)](https://www.gnu.org/licenses/gpl-3.0.en.html)、またはその日本語訳[GNU 一般公衆利用許諾書の日本語訳](https://gpl.mhatta.org/gpl.ja.html)をご覧ください。
+
+なお、ライセンスを英語で記した[License.md](License.md)もあります。

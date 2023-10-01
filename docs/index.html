@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>Calc</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+  var index_rel_prefix = "./";
+</script>
+
+<script src="./js/navigation.js" defer></script>
+<script src="./js/search.js" defer></script>
+<script src="./js/search_index.js" defer></script>
+<script src="./js/searcher.js" defer></script>
+<script src="./js/darkfish.js" defer></script>
+
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
+
+
+<body id="top" role="document" class="file">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  <div id="project-metadata">
+    
+<div id="fileindex-section" class="nav-section">
+  <h3>Pages</h3>
+
+  <ul class="link-list">
+    <li><a href="./License_md.html">License</a>
+    <li><a href="./README_md.html">README</a>
+  </ul>
+</div>
+
+    <div id="classindex-section" class="nav-section">
+  <h3>Class and Module Index</h3>
+
+  <ul class="link-list">
+  <li><code><a href="./Calc.html">Calc</a></code>
+  <li><code><a href="./Object.html">Object</a></code>
+</div>
+
+  </div>
+</nav>
+
+<main role="main">
+
+
+<p>日本語の解説が後半にあります。</p>
+
+<h3 id="label-What+is+this+program-3F">What is this program?<span><a href="#label-What+is+this+program-3F">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<p>The program ‘calc’ is a simple calculator written in Ruby programming language. It is run from the command line like this.</p>
+
+<pre>$ calc
+calc &gt; 10+20
+30
+calc &gt; quit
+$</pre>
+
+<h3 id="label-Prerequisites">Prerequisites<span><a href="#label-Prerequisites">&para;</a> <a href="#top">&uarr;</a></span></h3>
+<ul><li>
+<p>Linux OS</p>
+</li><li>
+<p>Ruby 3.1.2 or later (maybe older version is also OK)</p>
+</li></ul>
+
+<h3 id="label-installation">installation<span><a href="#label-installation">&para;</a> <a href="#top">&uarr;</a></span></h3>
+<ol><li>
+<p>Click the ‘Code’ button, then click ‘Download ZIP’ in the small dialog.</p>
+</li><li>
+<p>Unzip the downloaded Zip file, then a new directory ‘calc’ will be created.</p>
+</li><li>
+<p>Type <code>gem build calc</code> under the directory ‘calc’, then the gem file ‘calc-0.1.gem’ is created. The number <code>0.1</code> is the version of <a href="Calc.html"><code>Calc</code></a>.</p>
+</li><li>
+<p>Type <code>gem install calc-0.1</code>.</p>
+</li></ol>
+
+<h3 id="label-How+to+use+the+program.">How to use the program.<span><a href="#label-How+to+use+the+program.">&para;</a> <a href="#top">&uarr;</a></span></h3>
+<ol><li>
+<p>Start the terminal and type ‘calc’.</p>
+</li><li>
+<p>Then a prompt appears ‘$ calc &gt; ’</p>
+</li><li>
+<p>Type an expression like ‘2+3’ and push Enter key, then the answer ‘5’ appears.</p>
+</li><li>
+<p>Type ‘quit’ or ‘exit’, then the program will finish.</p>
+</li><li>
+<p>You can also use it as a one line calculator like <code>$ calc &quot;10*20+30&quot;</code>.</p>
+</li></ol>
+
+<h3 id="label-feature">feature<span><a href="#label-feature">&para;</a> <a href="#top">&uarr;</a></span></h3>
+<ul><li>
+<p>Operatores: <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, <code>**</code>(power), <code>-</code>(unary minus), <code>(</code> and <code>)</code></p>
+</li><li>
+<p>keywords: <code>sin</code>, <code>cos</code>, <code>tan</code>, <code>asin</code>, <code>acos</code>, <code>atan</code>, <code>exp</code>, <code>log</code>, <code>sqrt</code> and <code>v</code>.</p>
+</li><li>
+<p>Variable can be used. It is a string of alphabets without the keywords above. It can be used in any place in the expression. <code>variable_name = expression</code> is the syntax to define the variable. A defined variable can be used in an expression instead of a number.</p>
+</li><li>
+<p>calc remembers the value of the previous calculation. The value is referred by the special variable <code>v</code>.</p>
+</li><li>
+<p>Mathematical functions can be used such as <code>sin</code>, <code>cos</code>, <code>tan</code>, <code>asin</code>, <code>acos</code>, <code>atan</code>, <code>exp</code>, <code>log</code> and <code>sqrt</code>.</p>
+</li><li>
+<p>The library file <code>lib/calc/calc.rb</code> is made by Racc, which is a ruby version <code>yacc</code>. The source file is <code>racc/calc.y</code>. See <code>racc/doc.md</code> for details.</p>
+</li></ul>
+
+<h3 id="label-License"><a href="License_md.html">License</a><span><a href="#label-License">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<p>GPL ver 3 or later. See <a href="License_md.html">License.md</a> for details.</p>
+
+<h3 id="label-E3-81-93-E3-82-8C-E3-81-AF-E4-BD-95-E3-81-AE-E3-83-97-E3-83-AD-E3-82-B0-E3-83-A9-E3-83-A0-EF-BC-9F">これは何のプログラム？<span><a href="#label-E3-81-93-E3-82-8C-E3-81-AF-E4-BD-95-E3-81-AE-E3-83-97-E3-83-AD-E3-82-B0-E3-83-A9-E3-83-A0-EF-BC-9F">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<p>Rubyプログラム<code>calc.rb</code>は簡易電卓です。 コマンドラインから次のように起動できます。</p>
+
+<pre>$ calc
+calc &gt; 10+20
+30
+calc &gt; quit
+$</pre>
+
+<h3 id="label-E5-8B-95-E4-BD-9C-E6-9D-A1-E4-BB-B6">動作条件<span><a href="#label-E5-8B-95-E4-BD-9C-E6-9D-A1-E4-BB-B6">&para;</a> <a href="#top">&uarr;</a></span></h3>
+<ul><li>
+<p>Linux OS</p>
+</li><li>
+<p>Ruby 3.1.2 or later (maybe older version is also OK)</p>
+</li></ul>
+
+<h3 id="label-E3-82-A4-E3-83-B3-E3-82-B9-E3-83-88-E3-83-BC-E3-83-AB">インストール<span><a href="#label-E3-82-A4-E3-83-B3-E3-82-B9-E3-83-88-E3-83-BC-E3-83-AB">&para;</a> <a href="#top">&uarr;</a></span></h3>
+<ol><li>
+<p>‘Code’ボタンをクリックし、現れた小さなダイアログの‘Download ZIP’をクリックする</p>
+</li><li>
+<p>ダウンロードしたZipファイルを解凍する。これにより新しく「calc」ディレクトリが作られ、その中にすべてのファイルが収められる</p>
+</li><li>
+<p>「gem build calc」を実行することにより、gemファイル「calc-0.1.gem」が作られる。</p>
+</li><li>
+<p>「gem install calc-0.1」とタイプし、gemをインストールする。</p>
+</li></ol>
+
+<h3 id="label-E4-BD-BF-E3-81-84-E6-96-B9">使い方<span><a href="#label-E4-BD-BF-E3-81-84-E6-96-B9">&para;</a> <a href="#top">&uarr;</a></span></h3>
+<ol><li>
+<p>解凍したフォルダで端末（コマンドライン）を起動し、「calc」と入力する</p>
+</li><li>
+<p>プロンプト「$ calc &gt;」が現れる</p>
+</li><li>
+<p>式（例えば2+3）と入力し、エンターキーを押すと、答え「5」が表示される</p>
+</li><li>
+<p>「quit」または「exit」とタイプするとプログラムは終了する</p>
+</li><li>
+<p>引数を付けて一行計算アプリとしても使える。（例）<code>$ calc &quot;10*20+30&quot;</code></p>
+</li></ol>
+
+<h3 id="label-E7-89-B9-E9-95-B7">特長<span><a href="#label-E7-89-B9-E9-95-B7">&para;</a> <a href="#top">&uarr;</a></span></h3>
+<ul><li>
+<p>次の演算記号が使える。<code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, <code>**</code>(累乗), <code>-</code>(単項マイナス), <code>(</code>, <code>)</code></p>
+</li><li>
+<p>予約語: <code>sin</code>, <code>cos</code>, <code>tan</code>, <code>asin</code>, <code>acos</code>, <code>atan</code>, <code>exp</code>, <code>log</code>, <code>sqrt</code>, <code>v</code></p>
+</li><li>
+<p>変数が使える。 変数はアルファベットからなり文字列である。 変数は式の中のどこにでも使うことができる。 <code>変数名 = 式</code> により、変数に値を代入することができる。 定義された変数は式の中で使うことができる</p>
+</li><li>
+<p>calcは直前の計算結果を記憶している。 変数<code>v</code> でその値を参照できる</p>
+</li><li>
+<p>関数が使える。<code>sin</code>, <code>cos</code>, <code>tan</code>, <code>asin</code>, <code>acos</code>, <code>atan</code>, <code>exp</code>, <code>log</code>, <code>sqrt</code>.</p>
+</li><li>
+<p>ライブラリ・ファイル<code>lib/calc/calc.rb</code>はRaccによって生成されたものである。 そのソースファイルは<code>racc/calc.y</code>。 詳しい説明は、<code>racc/oc.md</code>を参照のこと。</p>
+</li></ul>
+
+<h3 id="label-E3-83-A9-E3-82-A4-E3-82-BB-E3-83-B3-E3-82-B9">ライセンス<span><a href="#label-E3-83-A9-E3-82-A4-E3-82-BB-E3-83-B3-E3-82-B9">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<p>Copyright © 2022,2023 ToshioCP (関谷 敏雄)</p>
+
+<p>このプログラムは、フリーソフトウェア財団によって発行された「GNU一般公衆利用許諾書」(バージョン3か、希望によってはそれ以降のバージョンのうちどれか)の定める条件の下で再頒布または改変することができる。</p>
+
+<p>このプログラムは有用であることを願って頒布されますが、<em>全くの無保証</em> です。商業可能性の保証や特定の目的への適合性は、言外に示されたものも含め全く存在しません。 詳しくは<a href="https://www.gnu.org/licenses/gpl-3.0.en.html">GNU 一般公衆利用許諾書(英語)</a>、またはその日本語訳<a href="https://gpl.mhatta.org/gpl.ja.html">GNU 一般公衆利用許諾書の日本語訳</a>をご覧ください。</p>
+
+<p>なお、ライセンスを英語で記した<a href="License_md.html">License.md</a>もあります。</p>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.5.0.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+
