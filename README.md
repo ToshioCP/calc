@@ -53,6 +53,7 @@ See `racc/doc.md` for details.
 
 You can do the following
 
+- `rake`: Compile `racc/calc.y` and create/update `lib/calc/calc.rb`.
 - `rake rdoc`: Create documents under `docs` directory.
 - `rake test`: Run test programs under `test` directory.
 
@@ -114,6 +115,7 @@ $
 
 次のことができます。
 
+- `rake`: `racc/calc.y`をコンパイルして`lib/calc/calc.rb`を生成する
 - `rake rdoc`: `docs`ディレクトリ以下にドキュメントを生成する
 - `rake test`: `test`ディレクトリの下にあるテストプログラムを実行する
 

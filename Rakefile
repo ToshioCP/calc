@@ -6,6 +6,12 @@
 require "rdoc/task"
 require "rake/testtask"
 
+task default: "lib/calc/calc.rb"
+
+file "lib/calc/calc.rb" => "racc/calc.y" do
+  sh "racc -o lib/calc/calc.rb racc/calc.y"
+end
+
 # RDoc::Task creates the following tasks.
 # [rdoc] Generate RDoc files
 # [clobber_rdoc] Delete all the rdoc files.

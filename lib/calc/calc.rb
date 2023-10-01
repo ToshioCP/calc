@@ -12,7 +12,7 @@ include Math
 
 class Calc < Racc::Parser
 
-module_eval(<<'...end calc.y.rb/module_eval...', 'calc.y.rb', 46)
+module_eval(<<'...end calc.y/module_eval...', 'calc.y', 46)
  
 def initialize
   @table = {}
@@ -50,7 +50,7 @@ def next_token
   @tokens.shift
 end
 
-...end calc.y.rb/module_eval...
+...end calc.y/module_eval...
 ##### State transition tables begin ###
 
 racc_action_table = [
@@ -291,31 +291,31 @@ Racc_debug_parser = false
 
 # reduce 0 omitted
 
-module_eval(<<'.,.,', 'calc.y.rb', 11)
+module_eval(<<'.,.,', 'calc.y', 11)
   def _reduce_1(val, _values)
      @v = val[0]
   end
 .,.,
 
-module_eval(<<'.,.,', 'calc.y.rb', 12)
+module_eval(<<'.,.,', 'calc.y', 12)
   def _reduce_2(val, _values)
      @v = @table[val[0]] = val[2]
   end
 .,.,
 
-module_eval(<<'.,.,', 'calc.y.rb', 13)
+module_eval(<<'.,.,', 'calc.y', 13)
   def _reduce_3(val, _values)
      val[0] + val[2]
   end
 .,.,
 
-module_eval(<<'.,.,', 'calc.y.rb', 14)
+module_eval(<<'.,.,', 'calc.y', 14)
   def _reduce_4(val, _values)
      val[0] - val[2]
   end
 .,.,
 
-module_eval(<<'.,.,', 'calc.y.rb', 15)
+module_eval(<<'.,.,', 'calc.y', 15)
   def _reduce_5(val, _values)
      -(val[1])
   end
@@ -323,13 +323,13 @@ module_eval(<<'.,.,', 'calc.y.rb', 15)
 
 # reduce 6 omitted
 
-module_eval(<<'.,.,', 'calc.y.rb', 17)
+module_eval(<<'.,.,', 'calc.y', 17)
   def _reduce_7(val, _values)
      val[0] * val[2]
   end
 .,.,
 
-module_eval(<<'.,.,', 'calc.y.rb', 18)
+module_eval(<<'.,.,', 'calc.y', 18)
   def _reduce_8(val, _values)
      if (val[2] != 0.0) then val[0] / val[2] else raise("Division by zero.") end
   end
@@ -337,19 +337,19 @@ module_eval(<<'.,.,', 'calc.y.rb', 18)
 
 # reduce 9 omitted
 
-module_eval(<<'.,.,', 'calc.y.rb', 20)
+module_eval(<<'.,.,', 'calc.y', 20)
   def _reduce_10(val, _values)
      val [0] ** val[1]
   end
 .,.,
 
-module_eval(<<'.,.,', 'calc.y.rb', 21)
+module_eval(<<'.,.,', 'calc.y', 21)
   def _reduce_11(val, _values)
      val[1]
   end
 .,.,
 
-module_eval(<<'.,.,', 'calc.y.rb', 22)
+module_eval(<<'.,.,', 'calc.y', 22)
   def _reduce_12(val, _values)
     if @table[val[0]] then @table[val[0]] else raise("#{val[0]} not found.") end
   end
@@ -357,79 +357,79 @@ module_eval(<<'.,.,', 'calc.y.rb', 22)
 
 # reduce 13 omitted
 
-module_eval(<<'.,.,', 'calc.y.rb', 24)
+module_eval(<<'.,.,', 'calc.y', 24)
   def _reduce_14(val, _values)
      Math::PI
   end
 .,.,
 
-module_eval(<<'.,.,', 'calc.y.rb', 25)
+module_eval(<<'.,.,', 'calc.y', 25)
   def _reduce_15(val, _values)
      Math::E
   end
 .,.,
 
-module_eval(<<'.,.,', 'calc.y.rb', 26)
+module_eval(<<'.,.,', 'calc.y', 26)
   def _reduce_16(val, _values)
      sqrt(val[2] )
   end
 .,.,
 
-module_eval(<<'.,.,', 'calc.y.rb', 27)
+module_eval(<<'.,.,', 'calc.y', 27)
   def _reduce_17(val, _values)
      sin(val[2] )
   end
 .,.,
 
-module_eval(<<'.,.,', 'calc.y.rb', 28)
+module_eval(<<'.,.,', 'calc.y', 28)
   def _reduce_18(val, _values)
      cos(val[2] )
   end
 .,.,
 
-module_eval(<<'.,.,', 'calc.y.rb', 29)
+module_eval(<<'.,.,', 'calc.y', 29)
   def _reduce_19(val, _values)
      tan(val[2] )
   end
 .,.,
 
-module_eval(<<'.,.,', 'calc.y.rb', 30)
+module_eval(<<'.,.,', 'calc.y', 30)
   def _reduce_20(val, _values)
      asin(val[2] )
   end
 .,.,
 
-module_eval(<<'.,.,', 'calc.y.rb', 31)
+module_eval(<<'.,.,', 'calc.y', 31)
   def _reduce_21(val, _values)
      acos(val[2] )
   end
 .,.,
 
-module_eval(<<'.,.,', 'calc.y.rb', 32)
+module_eval(<<'.,.,', 'calc.y', 32)
   def _reduce_22(val, _values)
      atan(val[2] )
   end
 .,.,
 
-module_eval(<<'.,.,', 'calc.y.rb', 33)
+module_eval(<<'.,.,', 'calc.y', 33)
   def _reduce_23(val, _values)
      exp(val[2] )
   end
 .,.,
 
-module_eval(<<'.,.,', 'calc.y.rb', 34)
+module_eval(<<'.,.,', 'calc.y', 34)
   def _reduce_24(val, _values)
      log(val[2] )
   end
 .,.,
 
-module_eval(<<'.,.,', 'calc.y.rb', 35)
+module_eval(<<'.,.,', 'calc.y', 35)
   def _reduce_25(val, _values)
      log10(val[2] )
   end
 .,.,
 
-module_eval(<<'.,.,', 'calc.y.rb', 36)
+module_eval(<<'.,.,', 'calc.y', 36)
   def _reduce_26(val, _values)
      @v
   end
