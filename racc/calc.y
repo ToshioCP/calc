@@ -1,9 +1,9 @@
 class Calc
   prechigh
     nonassoc UMINUS
+    right '**'
     left '*' '/'
     left '+' '-'
-    right '**'
   preclow
   options no_result_var
   token ID NUM PI E sqrt sin cos tan asin acos atan exp log log10 v
@@ -13,10 +13,9 @@ rule
               | ID '=' expression { @v = @table[val[0]] = val[2] }
   expression  : expression '+' expression { val[0] + val[2] }
               | expression '-' expression { val[0] - val[2] }
-              | '-' factor  =UMINUS { -(val[1]) }
-              | factor
-  factor      : factor '*' factor { val[0] * val[2] }
-              | factor '/' factor { if (val[2] != 0.0) then val[0] / val[2] else raise("Division by zero.") end }
+              | expression '*' expression { val[0] * val[2] }
+              | expression '/' expression { if (val[2] != 0.0) then val[0] / val[2] else raise("Division by zero.") end }
+              | '-' primary  =UMINUS { -(val[1]) }
               | primary
   primary     : primary '**' primary { val [0] ** val[1] }
               | '(' expression ')' { val[1] }
