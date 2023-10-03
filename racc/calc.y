@@ -1,7 +1,7 @@
 class Calc
   prechigh
-    nonassoc UMINUS
     right '**'
+    nonassoc UMINUS
     left '*' '/'
     left '+' '-'
   preclow
@@ -11,10 +11,10 @@ class Calc
 rule
   statement   : expression { @v = val[0] }
               | ID '=' expression { @v = @table[val[0]] = val[2] }
-  expression  : expression '+' expression { val[0] + val[2] }
-              | expression '-' expression { val[0] - val[2] }
-              | expression '*' expression { val[0] * val[2] }
-              | expression '/' expression { if (val[2] != 0.0) then val[0] / val[2] else raise("Division by zero.") end }
+  expression  : expression '+' primary { val[0] + val[2] }
+              | expression '-' primary { val[0] - val[2] }
+              | expression '*' primary { val[0] * val[2] }
+              | expression '/' primary { if (val[2] != 0.0) then val[0] / val[2] else raise("Division by zero.") end }
               | '-' primary  =UMINUS { -(val[1]) }
               | primary
   primary     : primary '**' primary { val [0] ** val[1] }

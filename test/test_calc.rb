@@ -21,5 +21,6 @@ class TestCalc < Minitest::Test
     assert_equal 1, @calc.run("log(E)")
     assert_equal 1.4142135623730951, @calc.run("sqrt(2)")
     assert_equal 100, (@calc.run("20");@calc.run("v*5"))
+    assert_raises(ParseError) {@calc.run("1+-2")}
   end
 end
