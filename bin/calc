@@ -3,18 +3,39 @@
 require 'readline'
 require 'calc'
 
+def usage
+  $stderr.print "Usage: calc [expression]\n"
+  usage_possible_calculation
+end
+
+def usage_possible_calculation
+  $stderr.print "Possible calculation:\n"
+  $stderr.print "  Arithmetic such as +, -, *, /, (, ), - (unary minus) and ** (power).\n"
+  $stderr.print "  Functions such as sqrt, sin, cos, tan, asin, acos, atan, exp, log and log10.\n"
+  $stderr.print "  Variables (any alphabetical word) and the special variable 'v' that is the former result.\n"
+end
+
 calc = Calc.new
 if ARGV[0] =~ /--help|-h/
-  $stderr.print "Usage: calc [expression]\n"
+  usage
 elsif ARGV.size == 1
-  print "#{calc.run(ARGV[0])}\n"
+  begin
+    print "#{calc.run(ARGV[0])}\n"
+  rescue => evar
+    print "#{evar.message[1..-1]}\n" # remove the newline at the beginning of the message
+  end
 else
   while buf = Readline.readline("calc > ", true)
     break if buf == "quit" || buf == "exit" || buf == "q"
-    begin
-      print "#{calc.run(buf)}\n"
-    rescue => evar
-      print "#{evar.message[1..-1]}\n" # remove the newline at the beginning of the message
+    if buf =="help"
+      $stderr.print "quit/q/exit => quit the program.\n"
+      usage_possible_calculation
+    else
+      begin
+        print "#{calc.run(buf)}\n"
+      rescue => evar
+        print "#{evar.message[1..-1]}\n" # remove the newline at the beginning of the message
+      end
     end
   end
 end
