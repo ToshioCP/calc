@@ -34,7 +34,7 @@ def lex(s)
     elsif ss.scan(/[[:digit:]]+(\.[[:digit:]]*)?/)
       @tokens << [:NUM, ss[0].to_f]
     elsif ss.scan(/\*\*/)
-      @tokens << [ss[0],ss[0]]
+      @tokens << [:POWER,ss[0]]
     elsif ss.scan(/[+\-*\/()=;]/)
       @tokens << [ss[0],ss[0]]
     elsif ss.scan(/\s+/)
@@ -216,7 +216,7 @@ racc_shift_n = 69
 racc_token_table = {
   false => 0,
   :error => 1,
-  "**" => 2,
+  :POWER => 2,
   :UMINUS => 3,
   "*" => 4,
   "/" => 5,
@@ -264,7 +264,7 @@ Racc_arg = [
 Racc_token_to_s_table = [
   "$end",
   "error",
-  "\"**\"",
+  "POWER",
   "UMINUS",
   "\"*\"",
   "\"/\"",
@@ -345,7 +345,7 @@ module_eval(<<'.,.,', 'calc.y', 17)
 
 module_eval(<<'.,.,', 'calc.y', 19)
   def _reduce_9(val, _values)
-     val [0] ** val[1]
+     val [0] ** val[2]
   end
 .,.,
 

@@ -1,7 +1,7 @@
-# This "Rakefile" just build HTML files.
-
-# Just type 'rake' to create HTML documents.
-# Type 'rake test' for the test.
+# This "Rakefile" does three things:
+# - Just type 'rake' to compile 'racc/calc.y' into 'lib/calc/calc.rb'.
+# - Type 'rake rdoc' to create HTML documents.
+# - Type 'rake test' for the test.
 
 require "rdoc/task"
 require "rake/testtask"

@@ -21,7 +21,7 @@ if ARGV[0] =~ /--help|-h/
 elsif ARGV.size == 1
   begin
     print "#{calc.run(ARGV[0])}\n"
-  rescue => evar
+  rescue StandardError => evar
     print "#{evar.message[1..-1]}\n" # remove the newline at the beginning of the message
   end
 else

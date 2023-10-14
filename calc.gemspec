@@ -1,8 +1,8 @@
 Gem::Specification.new do |s|
   s.name              = 'calc'
   s.version           = '0.1'
-  s.summary           = 'calculator'
-  s.description       = 'calculator'
+  s.summary           = 'Calculator'
+  s.description       = 'Advanced calculator'
   s.license           = 'GPL-3.0'
   s.author            = 'Toshio Sekiya'
   s.email             = 'lxboyjp@gmail.com'

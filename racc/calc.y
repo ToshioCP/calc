@@ -1,6 +1,6 @@
 class Calc
   prechigh
-    right '**'
+    right POWER
     nonassoc UMINUS
     left '*' '/'
     left '+' '-'
@@ -17,7 +17,7 @@ rule
               | expression '/' primary { if (val[2] != 0.0) then val[0] / val[2] else raise("Division by zero.") end }
               | '-' primary  =UMINUS { -(val[1]) }
               | primary
-  primary     : primary '**' primary { val [0] ** val[1] }
+  primary     : primary POWER primary { val [0] ** val[2] }
               | '(' expression ')' { val[1] }
               | ID {if @table[val[0]] then @table[val[0]] else raise("#{val[0]} not found.") end }
               | NUM
@@ -63,7 +63,7 @@ def lex(s)
     elsif ss.scan(/[[:digit:]]+(\.[[:digit:]]*)?/)
       @tokens << [:NUM, ss[0].to_f]
     elsif ss.scan(/\*\*/)
-      @tokens << [ss[0],ss[0]]
+      @tokens << [:POWER,ss[0]]
     elsif ss.scan(/[+\-*\/()=;]/)
       @tokens << [ss[0],ss[0]]
     elsif ss.scan(/\s+/)
