@@ -10,6 +10,7 @@ class TestCalc < Minitest::Test
 
   def test_calc
     assert_equal 3, @calc.run("1+2")
+    assert_equal 7, @calc.run("1+2*3")
     assert_equal 100, @calc.run("10*10")
     assert_equal -6, @calc.run("-2*3")
     assert_equal 15, @calc.run("(2+3)*(5-2)")
@@ -22,6 +23,7 @@ class TestCalc < Minitest::Test
     assert_equal 1, @calc.run("log(E)")
     assert_equal 1.4142135623730951, @calc.run("sqrt(2)")
     assert_equal 100, (@calc.run("20");@calc.run("v*5"))
-    assert_raises(ParseError) {@calc.run("1+-2")}
+    assert_equal -1, @calc.run("1+-2")  # If 1+-2 is not allowed, assert_raises(ParseError) {@calc.run("1+-2")}
+    assert_equal -1, @calc.run("1+(-2)")
   end
 end

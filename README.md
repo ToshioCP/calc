@@ -20,10 +20,25 @@ $
 
 ### installation
 
+There are two ways.
+
 1. Click the 'Code' button, then click 'Download ZIP' in the small dialog.
 2. Unzip the downloaded Zip file, then a new directory 'calc' will be created.
-3. Type `gem build calc` under the directory 'calc', then the gem file 'calc-0.1.gem' is created. The number `0.1` is the version of Calc.
-4. Type `gem install calc-0.1`.
+3. Type `gem build s_calc` under the directory 'calc', then the gem file `s_calc-0.1.2.gem` is created.
+The number `0.1.2` is the version number.
+4. Type `gem install s_calc-0.1.2`.
+
+Another way is simpler.
+This gem is published to RubyGems.org.
+You can install it from RubyGems.
+
+```
+$ gem install s_calc
+```
+
+Be careful.
+The command name and GitHub repository name is `calc` but the gem name is `s_calc`.
+This is because the name `calc` has already existed in RubyGems.org.
 
 ### How to use the program.
 
@@ -82,10 +97,21 @@ $
 
 ### インストール
 
+2通りのインストール方法があります。
+
 1. 'Code'ボタンをクリックし、現れた小さなダイアログの'Download ZIP'をクリックする
 2. ダウンロードしたZipファイルを解凍する。これにより新しく「calc」ディレクトリが作られ、その中にすべてのファイルが収められる
-3. 「gem build calc」を実行することにより、gemファイル「calc-0.1.gem」が作られる。
-4. 「gem install calc-0.1」とタイプし、gemをインストールする。
+3. 「gem build s_calc」を実行することにより、gemファイル「s_calc-0.1.2.gem」が作られる。
+4. 「gem install s_calc-0.1.2」とタイプし、gemをインストールする。
+
+別な簡単なインストール方法はRubyGemsからインストールすることです。
+
+```
+$ gem install s_calc
+```
+
+コマンド名とGitHubのレポジトリ名が`calc`であるのに対して、gem名は`s_calc`であることに注意してください。
+これは、RubyGemsには既に`calc`という名前のgemが存在しており、異なるgem名が必要だったためです。
 
 ### 使い方
 
