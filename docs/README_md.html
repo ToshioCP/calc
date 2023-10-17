@@ -65,6 +65,8 @@
           <li>      <a href="#label-installation">installation</a>
           <li>      <a href="#label-How+to+use+the+program.">How to use the program.</a>
           <li>      <a href="#label-feature">feature</a>
+          <li>      <a href="#label-Functions">Functions</a>
+          <li>      <a href="#label-Racc+library">Racc library</a>
           <li>      <a href="#label-Rakefile">Rakefile</a>
           <li>      <a href="#label-License">License</a>
           <li>      <a href="#label-E3-81-93-E3-82-8C-E3-81-AF-E4-BD-95-E3-81-AE-E3-83-97-E3-83-AD-E3-82-B0-E3-83-A9-E3-83-A0-EF-BC-9F">これは何のプログラム？</a>
@@ -72,6 +74,8 @@
           <li>      <a href="#label-E3-82-A4-E3-83-B3-E3-82-B9-E3-83-88-E3-83-BC-E3-83-AB">インストール</a>
           <li>      <a href="#label-E4-BD-BF-E3-81-84-E6-96-B9">使い方</a>
           <li>      <a href="#label-E7-89-B9-E9-95-B7">特長</a>
+          <li>      <a href="#label-E9-96-A2-E6-95-B0">関数</a>
+          <li>      <a href="#label-Racc">Racc</a>
           <li>      <a href="#label-Rakefile">Rakefile</a>
           <li>      <a href="#label-E3-83-A9-E3-82-A4-E3-82-BB-E3-83-B3-E3-82-B9">ライセンス</a>
 
@@ -99,11 +103,15 @@
 
 <h3 id="label-What+is+this+program-3F">What is this program?<span><a href="#label-What+is+this+program-3F">&para;</a> <a href="#top">&uarr;</a></span></h3>
 
-<p>The program ‘calc’ is a simple calculator written in Ruby programming language. It is run from the command line like this.</p>
+<p>The program ‘calc’ is a scientific calculator written in Ruby programming language. It is run from the command line like this.</p>
 
-<pre>$ calc
-calc &gt; 10+20
-30
+<pre>$ calc 2*3+4*5
+26
+$ calc
+calc &gt; 0.1-0.2
+-0.1
+calc &gt; sin(PI/6)
+0.49999999999999994 # Float always includes error.
 calc &gt; quit
 $</pre>
 
@@ -122,12 +130,12 @@ $</pre>
 </li><li>
 <p>Unzip the downloaded Zip file, then a new directory ‘calc’ will be created.</p>
 </li><li>
-<p>Type <code>gem build s_calc</code> under the directory ‘calc’, then the gem file ‘s_calc-0.1.2.gem’ is created. The number <code>0.1.2</code> is the version number.</p>
+<p>Type <code>gem build s_calc</code> under the directory ‘calc’, then the gem file <code>s_calc-0.1.3.gem</code> is created. The number <code>0.1.3</code> is the version number.</p>
 </li><li>
-<p>Type <code>gem install s_calc-0.1.2</code>.</p>
+<p>Type <code>gem install s_calc-0.1.3</code>.</p>
 </li></ol>
 
-<p>Another way is simpler. This gem is published to RubyGems.org. You can install it from RubyGems.</p>
+<p>Another way is simpler. This gem is published to RubyGems.org. You can install it from RubyGems. Just type:</p>
 
 <pre>$ gem install s_calc</pre>
 
@@ -141,7 +149,7 @@ $</pre>
 </li><li>
 <p>Type an expression like ‘2+3’ and push Enter key, then the answer ‘5’ appears.</p>
 </li><li>
-<p>Type ‘quit’ or ‘exit’, then the program will finish.</p>
+<p>Type ‘quit’, ‘q’ or ‘exit’, then the program will finish.</p>
 </li><li>
 <p>You can also use it as a one line calculator like <code>$ calc &quot;10*20+30&quot;</code>.</p>
 </li></ol>
@@ -150,16 +158,53 @@ $</pre>
 <ul><li>
 <p>Operatores: <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, <code>**</code>(power), <code>-</code>(unary minus), <code>(</code> and <code>)</code></p>
 </li><li>
-<p>keywords: <code>sin</code>, <code>cos</code>, <code>tan</code>, <code>asin</code>, <code>acos</code>, <code>atan</code>, <code>exp</code>, <code>log</code>, <code>sqrt</code> and <code>v</code>.</p>
+<p>Functions: <code>sqrt</code>, <code>sin</code>, <code>cos</code>, <code>tan</code>, <code>asin</code>, <code>acos</code>, <code>atan</code>, <code>exp</code>, <code>ln</code>, <code>log</code>, <code>abs</code>, <code>fact</code>, <code>floor</code>, <code>ceil</code> and <code>round</code>.</p>
 </li><li>
-<p>Variable can be used. It is a string of alphabets without the keywords above. It can be used in any place in the expression. <code>variable_name = expression</code> is the syntax to define the variable. A defined variable can be used in an expression instead of a number.</p>
+<p>The special variable <code>v</code> keeps the result of the previous calculation.</p>
 </li><li>
-<p>calc remembers the value of the previous calculation. The value is referred by the special variable <code>v</code>.</p>
-</li><li>
-<p>Mathematical functions can be used such as <code>sin</code>, <code>cos</code>, <code>tan</code>, <code>asin</code>, <code>acos</code>, <code>atan</code>, <code>exp</code>, <code>log</code> and <code>sqrt</code>.</p>
-</li><li>
-<p>The library file <code>lib/calc/calc.rb</code> is made by Racc, which is a ruby version <code>yacc</code>. The source file is <code>racc/calc.y</code>. See <code>racc/doc.md</code> for details.</p>
+<p>Variable can be used. It is a string of alphabets without the keywords above. It can be used in any place in the expression. <code>variable_name = expression</code> is the syntax to define the variable. A defined variable can be used in an expression.</p>
 </li></ul>
+
+<h3 id="label-Functions">Functions<span><a href="#label-Functions">&para;</a> <a href="#top">&uarr;</a></span></h3>
+<ul><li>
+<p><code>sqrt</code>: Square root. <code>sqrt(4) =&gt; 2</code></p>
+</li><li>
+<p><code>sin</code>: <code>sin(PI) =&gt; 1.2246467991473532e-16</code> It is well known that sin(PI) is zero. But Float always includes error.</p>
+</li><li>
+<p><code>cos</code>: <code>cos(PI) =&gt; -1</code></p>
+</li><li>
+<p><code>tan</code>: <code>tan(PI/4) =&gt; 0.9999999999999999</code> The answer includes error. The exact value is 1.</p>
+</li><li>
+<p><code>asin</code>: Inverse of the sine function. <code>asin(1) =&gt; 1.5707963267948966</code> This is PI/2</p>
+</li><li>
+<p><code>acos</code>: Inverse of the cosine function. <code>acos(1) =&gt; 0</code></p>
+</li><li>
+<p><code>atan</code>: Inverse of the tangent function. <code>atan(1) =&gt; 0.7853981633974483</code> This is PI/4</p>
+</li><li>
+<p><code>exp</code>: Exponential function. <code>exp(n)</code> means <code>e</code> raised to the power of n. <code>exp(1) =&gt; 2.718281828459045</code> It is E.</p>
+</li><li>
+<p><code>ln</code>: Natural logarithm. <code>ln(E) =&gt; 1</code></p>
+</li><li>
+<p><code>log</code>: Common logarithm or decimal logarithm. The base is 10. <code>log(10) =&gt; 1</code></p>
+</li><li>
+<p><code>abs</code>: Absolute value. <code>abs(-10) =&gt;10</code></p>
+</li><li>
+<p><code>fact</code>: Factorial. <code>fact(10) =&gt; 3628800</code> The argument must be non-negative. If it isn’t an integer, it will be rounded down to an integer. It must be less than 171 because of the limitation of Float.</p>
+</li><li>
+<p><code>floor</code>: Floor function. <code>floor(3.45) =&gt; 3</code></p>
+</li><li>
+<p><code>ceil</code>: Ceiling function. <code>ceil(3.45) =&gt; 4</code></p>
+</li><li>
+<p><code>round</code>: Rounding function. <code>round(3.45,1) =&gt; 3.5, round(-3.45,1) =&gt; -3.5</code> The rounding is done away from zero if the argument is at the middle of two candidates.</p>
+</li></ul>
+
+<h3 id="label-Racc+library">Racc library<span><a href="#label-Racc+library">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<p>Racc is a Ruby stabdard library. It is a parser generator like Yacc, which is a famous parser generator made for the Unix Operationg system. <a href="Calc.html"><code>Calc</code></a> uses Racc. It makes the library file <code>lib/calc/calc.rb</code> with Racc. The source file is <code>racc/calc.y</code>. You can compile it by typing:</p>
+
+<pre>$ rake</pre>
+
+<p>See <code>racc/doc.md</code> for details.</p>
 
 <h3 id="label-Rakefile">Rakefile<span><a href="#label-Rakefile">&para;</a> <a href="#top">&uarr;</a></span></h3>
 
@@ -178,11 +223,15 @@ $</pre>
 
 <h3 id="label-E3-81-93-E3-82-8C-E3-81-AF-E4-BD-95-E3-81-AE-E3-83-97-E3-83-AD-E3-82-B0-E3-83-A9-E3-83-A0-EF-BC-9F">これは何のプログラム？<span><a href="#label-E3-81-93-E3-82-8C-E3-81-AF-E4-BD-95-E3-81-AE-E3-83-97-E3-83-AD-E3-82-B0-E3-83-A9-E3-83-A0-EF-BC-9F">&para;</a> <a href="#top">&uarr;</a></span></h3>
 
-<p>Rubyプログラム<code>calc.rb</code>は簡易電卓です。 コマンドラインから次のように起動できます。</p>
+<p>Rubyプログラム<code>calc.rb</code>は関数電卓です。 コマンドラインから次のように起動できます。</p>
 
-<pre>$ calc
-calc &gt; 10+20
-30
+<pre>$ calc 2*3+4*5
+26
+$ calc
+calc &gt; 0.1-0.2
+-0.1
+calc &gt; sin(PI/6)
+0.49999999999999994 # 実数計算では誤差が発生します
 calc &gt; quit
 $</pre>
 
@@ -190,7 +239,7 @@ $</pre>
 <ul><li>
 <p>Linux OS</p>
 </li><li>
-<p>Ruby 3.1.2 or later (maybe older version is also OK)</p>
+<p>Ruby バージョン3.1.2以降（おそらく不利バージョンでも動作します）</p>
 </li></ul>
 
 <h3 id="label-E3-82-A4-E3-83-B3-E3-82-B9-E3-83-88-E3-83-BC-E3-83-AB">インストール<span><a href="#label-E3-82-A4-E3-83-B3-E3-82-B9-E3-83-88-E3-83-BC-E3-83-AB">&para;</a> <a href="#top">&uarr;</a></span></h3>
@@ -206,7 +255,7 @@ $</pre>
 <p>「gem install s_calc-0.1.2」とタイプし、gemをインストールする。</p>
 </li></ol>
 
-<p>別な簡単なインストール方法はRubyGemsからインストールすることです。</p>
+<p>別な簡単なインストール方法はRubyGemsからインストールすることです。 次のようにタイプするだけでgemをダウンロードしインストールします。</p>
 
 <pre>$ gem install s_calc</pre>
 
@@ -229,16 +278,55 @@ $</pre>
 <ul><li>
 <p>次の演算記号が使える。<code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, <code>**</code>(累乗), <code>-</code>(単項マイナス), <code>(</code>, <code>)</code></p>
 </li><li>
-<p>予約語: <code>sin</code>, <code>cos</code>, <code>tan</code>, <code>asin</code>, <code>acos</code>, <code>atan</code>, <code>exp</code>, <code>log</code>, <code>sqrt</code>, <code>v</code></p>
+<p>関数: <code>sqrt</code>, <code>sin</code>, <code>cos</code>, <code>tan</code>, <code>asin</code>, <code>acos</code>, <code>atan</code>, <code>exp</code>, <code>ln</code>, <code>log</code>, <code>abs</code>, <code>fact</code>, <code>floor</code>, <code>ceil</code> and <code>round</code>.</p>
 </li><li>
-<p>変数が使える。 変数はアルファベットからなり文字列である。 変数は式の中のどこにでも使うことができる。 <code>変数名 = 式</code> により、変数に値を代入することができる。 定義された変数は式の中で使うことができる</p>
+<p>変数が使える</p>
 </li><li>
-<p>calcは直前の計算結果を記憶している。 変数<code>v</code> でその値を参照できる</p>
+<p>calcは直前の計算結果を記憶しており、変数<code>v</code> でその値を参照できる</p>
 </li><li>
-<p>関数が使える。<code>sin</code>, <code>cos</code>, <code>tan</code>, <code>asin</code>, <code>acos</code>, <code>atan</code>, <code>exp</code>, <code>log</code>, <code>sqrt</code>.</p>
-</li><li>
-<p>ライブラリ・ファイル<code>lib/calc/calc.rb</code>はRaccによって生成されたものである。 そのソースファイルは<code>racc/calc.y</code>。 詳しい説明は、<code>racc/oc.md</code>を参照のこと。</p>
+<p>変数はアルファベットからなる文字列で、上記のキーワードを除く。 <code>変数名 = 式</code> により、変数に値を代入することができる。 定義された変数は、式の中で使うことができる</p>
 </li></ul>
+
+<h3 id="label-E9-96-A2-E6-95-B0">関数<span><a href="#label-E9-96-A2-E6-95-B0">&para;</a> <a href="#top">&uarr;</a></span></h3>
+<ul><li>
+<p><code>sqrt</code>: 平方根。 <code>sqrt(4) =&gt; 2</code></p>
+</li><li>
+<p><code>sin</code>: <code>sin(PI) =&gt; 1.2246467991473532e-16</code> sin(PI)はゼロですが、浮動小数点の計算は常に誤差が生じます</p>
+</li><li>
+<p><code>cos</code>: <code>cos(PI) =&gt; -1</code></p>
+</li><li>
+<p><code>tan</code>: <code>tan(PI/4) =&gt; 0.9999999999999999</code> 答えは誤差を含んでいます。正確には1になります</p>
+</li><li>
+<p><code>asin</code>: サインの逆三角関数。<code>asin(1) =&gt; 1.5707963267948966</code> これはPI/2です</p>
+</li><li>
+<p><code>acos</code>: コサインの逆三角関数。<code>acos(1) =&gt; 0</code></p>
+</li><li>
+<p><code>atan</code>: タンジェントの逆三角関数。<code>atan(1) =&gt; 0.7853981633974483</code> これはPI/4です</p>
+</li><li>
+<p><code>exp</code>: 指数関数。 <code>exp(n)</code>は<code>e</code>のn乗。<code>exp(1) =&gt; 2.718281828459045</code> これはEです</p>
+</li><li>
+<p><code>ln</code>: 自然対数。底がeの対数。<code>ln(E) =&gt; 1</code></p>
+</li><li>
+<p><code>log</code>: 常用対数。底が10の対数。<code>log(10) =&gt; 1</code></p>
+</li><li>
+<p><code>abs</code>: 絶対値。<code>abs(-10) =&gt;10</code></p>
+</li><li>
+<p><code>fact</code>: 階乗。<code>fact(10) =&gt; 3628800</code> 引数はゼロ以上。引数が整数でなければ、切り捨てて整数に直す。引数は171より小さくなければならない。答えがFloatの最大値を越えないように制限するため。</p>
+</li><li>
+<p><code>floor</code>: フロアー関数。小数点以下を切り捨て。<code>floor(3.45) =&gt; 3</code></p>
+</li><li>
+<p><code>ceil</code>: シーリング関数。小数点以下を切り上げ。<code>ceil(3.45) =&gt; 4</code></p>
+</li><li>
+<p><code>round</code>: 四捨五入関数。<code>round(3.45,1) =&gt; 3.5, round(-3.45,1) =&gt; -3.5</code> 丸める桁が5である場合は、ゼロから遠い方に丸める。</p>
+</li></ul>
+
+<h3 id="label-Racc">Racc<span><a href="#label-Racc">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<p>RaccはRubyの標準ライブラリーです。 パーサー・ジェネレーターと呼ばれ、Unixオペレーティングシステム上の有名なYaccに似ています。 CalcはRaccを使って<code>lib/calc/calc.rb</code>を生成しています。 そのソース・ファイルは<code>racc/calc.y</code>です。 コンパイルは次のようにタイプするだけでできます。</p>
+
+<pre>$ rake</pre>
+
+<p>ドキュメント <code>racc/doc.md</code>を参照してください。</p>
 
 <h3 id="label-Rakefile">Rakefile<span><a href="#label-Rakefile">&para;</a> <a href="#top">&uarr;</a></span></h3>
 
