@@ -11,8 +11,14 @@ end
 def usage_possible_calculation
   $stderr.print "Possible calculation:\n"
   $stderr.print "  Arithmetic such as +, -, *, /, (, ), - (unary minus) and ** (power).\n"
-  $stderr.print "  Functions such as sqrt, sin, cos, tan, asin, acos, atan, exp, log and log10.\n"
+  $stderr.print "  Functions such as sqrt, sin, cos, tan, asin, acos, atan, exp, ln, log,\n"
+  $stderr.print "                    abs, fact, floor, ceil and round\n"
   $stderr.print "  Variables (any alphabetical word) and the special variable 'v' that is the former result.\n"
+  $stderr.print "Example:\n"
+  $stderr.print "  sin(PI/2) #=> 1\n"
+  $stderr.print "  ln(E) #=> 1\n"
+  $stderr.print "  log(10) #=> 1\n"
+  $stderr.print "  round(1.25, 1) #=> 1.3, round(1.5,0) #=> 2, round(-1.5,0) #=> -2\n"
 end
 
 calc = Calc.new
@@ -20,9 +26,10 @@ if ARGV[0] =~ /--help|-h/
   usage
 elsif ARGV.size == 1
   begin
-    print "#{calc.run(ARGV[0])}\n"
+    a = calc.run(ARGV[0])
+    print "#{a == a.to_i ? a.to_i : a}\n"
   rescue StandardError => evar
-    print "#{evar.message[1..-1]}\n" # remove the newline at the beginning of the message
+    print "#{evar.message}\n"
   end
 else
   while buf = Readline.readline("calc > ", true)
@@ -32,9 +39,10 @@ else
       usage_possible_calculation
     else
       begin
-        print "#{calc.run(buf)}\n"
-      rescue => evar
-        print "#{evar.message[1..-1]}\n" # remove the newline at the beginning of the message
+        a = calc.run(buf)
+        print "#{a == a.to_i ? a.to_i : a}\n"
+      rescue StandardError =>evar
+        print "#{evar.message}\n"
       end
     end
   end
