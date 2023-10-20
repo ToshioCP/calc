@@ -22,7 +22,7 @@ RDoc::Task.new do |rdoc|
   rdoc.main = "README.md"
   rdoc.title = "Calc"
   rdoc.rdoc_dir = "docs"
-  rdoc.rdoc_files.include("README.md", "License.md", "lib/calc/*.rb")
+  rdoc.rdoc_files.include("README.md", "License.md")
 end
 task :rdoc do
   touch "docs/.nojekyll"

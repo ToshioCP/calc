@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name              = 's_calc'
-  s.version           = '0.1.3'
+  s.version           = '0.1.4'
   s.summary           = 'Scientific Calculator'
   s.description       = 'CUI Scientific calculator'
   s.license           = 'GPL-3.0'
@@ -8,8 +8,6 @@ Gem::Specification.new do |s|
   s.email             = 'lxboyjp@gmail.com'
   s.homepage          = 'https://github.com/ToshioCP/calc'
   s.metadata          = {"documentation_uri" => "https://toshiocp.github.io/calc/"}
-  s.files             = ['bin/calc',
-                         'lib/calc.rb',
-                         'lib/calc/calc.rb' ]
+  s.files             = ['README.md', 'bin/calc', 'lib/calc.rb', 'lib/calc/calc.rb']
   s.executables       = ['calc']
 end

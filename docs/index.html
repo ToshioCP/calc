@@ -68,9 +68,6 @@
     <div id="classindex-section" class="nav-section">
   <h3>Class and Module Index</h3>
 
-  <ul class="link-list">
-  <li><code><a href="./Calc.html">Calc</a></code>
-  <li><code><a href="./Object.html">Object</a></code>
 </div>
 
   </div>
@@ -110,9 +107,9 @@ $</pre>
 </li><li>
 <p>Unzip the downloaded Zip file, then a new directory ‘calc’ will be created.</p>
 </li><li>
-<p>Type <code>gem build s_calc</code> under the directory ‘calc’, then the gem file <code>s_calc-0.1.3.gem</code> is created. The number <code>0.1.3</code> is the version number.</p>
+<p>Type <code>gem build s_calc</code> under the directory ‘calc’, then the gem file <code>s_calc-X.X.X.gem</code> is created. The part <code>X.X.X</code> is a version number like <code>0.1.4</code>.</p>
 </li><li>
-<p>Type <code>gem install s_calc-0.1.3</code>.</p>
+<p>Type <code>gem install s_calc-X.X.X.gem</code>.</p>
 </li></ol>
 
 <p>Another way is simpler. This gem is published to RubyGems.org. You can install it from RubyGems. Just type:</p>
@@ -123,13 +120,13 @@ $</pre>
 
 <h3 id="label-How+to+use+the+program.">How to use the program.<span><a href="#label-How+to+use+the+program.">&para;</a> <a href="#top">&uarr;</a></span></h3>
 <ol><li>
-<p>Start the terminal and type ‘calc’.</p>
+<p>Start the terminal and type <code>calc</code>.</p>
 </li><li>
-<p>Then a prompt appears ‘$ calc &gt; ’</p>
+<p>Then the prompt appears <code>calc &gt;</code></p>
 </li><li>
-<p>Type an expression like ‘2+3’ and push Enter key, then the answer ‘5’ appears.</p>
+<p>Type an expression like <code>2+3</code> and push Enter key, then the answer <code>5</code> appears.</p>
 </li><li>
-<p>Type ‘quit’, ‘q’ or ‘exit’, then the program will finish.</p>
+<p>Type <code>quit</code>, <code>q</code> or <code>exit</code>, then the program will finish.</p>
 </li><li>
 <p>You can also use it as a one line calculator like <code>$ calc &quot;10*20+30&quot;</code>.</p>
 </li></ol>
@@ -180,7 +177,7 @@ $</pre>
 
 <h3 id="label-Racc+library">Racc library<span><a href="#label-Racc+library">&para;</a> <a href="#top">&uarr;</a></span></h3>
 
-<p>Racc is a Ruby stabdard library. It is a parser generator like Yacc, which is a famous parser generator made for the Unix Operationg system. <a href="Calc.html"><code>Calc</code></a> uses Racc. It makes the library file <code>lib/calc/calc.rb</code> with Racc. The source file is <code>racc/calc.y</code>. You can compile it by typing:</p>
+<p>Racc is a Ruby standard library. It is a parser generator like Yacc, which is a famous parser generator made for the Unix Operating system. Calc uses Racc. It makes the library file <code>lib/calc/calc.rb</code> with Racc. The source file is <code>racc/calc.y</code>. You can compile it by typing:</p>
 
 <pre>$ rake</pre>
 
@@ -196,6 +193,26 @@ $</pre>
 </li><li>
 <p><code>rake test</code>: Run test programs under <code>test</code> directory.</p>
 </li></ul>
+
+<h3 id="label-Using+Calc+as+a+library">Using Calc as a library<span><a href="#label-Using+Calc+as+a+library">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<p>You can use Calc as a library in your Ruby program.</p>
+<ul><li>
+<p>First, require ‘calc’.</p>
+</li><li>
+<p>Create an instance of the class <code>Calc</code>. Let the instance name be ‘c’.</p>
+</li><li>
+<p>Call <code>c.run(s)</code> where <code>s</code> is a string of an expression. Then it returns the value of the expression. For example, <code>c.run(&quot;1+2&quot;)</code> returns 3.0.</p>
+</li></ul>
+
+<p>The following is a sample code.</p>
+
+<pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">&#39;calc&#39;</span>
+
+<span class="ruby-identifier">c</span> = <span class="ruby-constant">Calc</span>.<span class="ruby-identifier">new</span>
+<span class="ruby-identifier">s</span> = <span class="ruby-string">&quot;1+2&quot;</span>
+<span class="ruby-identifier">print</span> <span class="ruby-node">&quot;#{c.run(s)}\n&quot;</span> <span class="ruby-comment">#=&gt; 3.0</span>
+</pre>
 
 <h3 id="label-License"><a href="License_md.html">License</a><span><a href="#label-License">&para;</a> <a href="#top">&uarr;</a></span></h3>
 
@@ -230,12 +247,12 @@ $</pre>
 </li><li>
 <p>ダウンロードしたZipファイルを解凍する。これにより新しく「calc」ディレクトリが作られ、その中にすべてのファイルが収められる</p>
 </li><li>
-<p>「gem build s_calc」を実行することにより、gemファイル「s_calc-0.1.2.gem」が作られる。</p>
+<p>「gem build s_calc」を実行することにより、gemファイル「s_calc-X.X.X.gem」が作られる。「X.X.X」の部分はバージョン番号で、例えば「0.1.4」のような数字である</p>
 </li><li>
-<p>「gem install s_calc-0.1.2」とタイプし、gemをインストールする。</p>
+<p>「gem install s_calc-X.X.X.gem」とタイプし、gemをインストールする</p>
 </li></ol>
 
-<p>別な簡単なインストール方法はRubyGemsからインストールすることです。 次のようにタイプするだけでgemをダウンロードしインストールします。</p>
+<p>もっと簡単なインストール方法は、RubyGemsからインストールすることです。 次のようにタイプするだけでgemをダウンロードしインストールします。</p>
 
 <pre>$ gem install s_calc</pre>
 
@@ -245,11 +262,11 @@ $</pre>
 <ol><li>
 <p>解凍したフォルダで端末（コマンドライン）を起動し、「calc」と入力する</p>
 </li><li>
-<p>プロンプト「$ calc &gt;」が現れる</p>
+<p>プロンプト「calc &gt;」が現れる</p>
 </li><li>
 <p>式（例えば2+3）と入力し、エンターキーを押すと、答え「5」が表示される</p>
 </li><li>
-<p>「quit」または「exit」とタイプするとプログラムは終了する</p>
+<p>「quit」または「q」または「exit」とタイプするとプログラムは終了する</p>
 </li><li>
 <p>引数を付けて一行計算アプリとしても使える。（例）<code>$ calc &quot;10*20+30&quot;</code></p>
 </li></ol>
@@ -318,6 +335,26 @@ $</pre>
 </li><li>
 <p><code>rake test</code>: <code>test</code>ディレクトリの下にあるテストプログラムを実行する</p>
 </li></ul>
+
+<h3 id="label-Calc-E3-82-92-E3-83-A9-E3-82-A4-E3-83-96-E3-83-A9-E3-83-AA-E3-81-A8-E3-81-97-E3-81-A6-E4-BD-BF-E3-81-86">Calcをライブラリとして使う<span><a href="#label-Calc-E3-82-92-E3-83-A9-E3-82-A4-E3-83-96-E3-83-A9-E3-83-AA-E3-81-A8-E3-81-97-E3-81-A6-E4-BD-BF-E3-81-86">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<p>CalcをライブラリとしてRubyプログラムの中で使うことができます。</p>
+<ul><li>
+<p>まず、‘calc’をrequireする</p>
+</li><li>
+<p><code>Calc</code>クラスのインスタンスを生成する。仮にその名前を<code>c</code>とする</p>
+</li><li>
+<p>数式を表す文字列を<code>s</code>とすると、<code>c.run(s)</code>はその数式を計算した値を返す 例えば、<code>c.run(&quot;1+2&quot;)</code>は3.0を返す。</p>
+</li></ul>
+
+<p>以下に簡単なサンプルコードを示します。</p>
+
+<pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">&#39;calc&#39;</span>
+
+<span class="ruby-identifier">c</span> = <span class="ruby-constant">Calc</span>.<span class="ruby-identifier">new</span>
+<span class="ruby-identifier">s</span> = <span class="ruby-string">&quot;1+2&quot;</span>
+<span class="ruby-identifier">print</span> <span class="ruby-node">&quot;#{c.run(s)}\n&quot;</span> <span class="ruby-comment">#=&gt; 3.0</span>
+</pre>
 
 <h3 id="label-E3-83-A9-E3-82-A4-E3-82-BB-E3-83-B3-E3-82-B9">ライセンス<span><a href="#label-E3-83-A9-E3-82-A4-E3-82-BB-E3-83-B3-E3-82-B9">&para;</a> <a href="#top">&uarr;</a></span></h3>
 

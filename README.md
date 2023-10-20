@@ -28,9 +28,9 @@ There are two ways.
 
 1. Click the 'Code' button, then click 'Download ZIP' in the small dialog.
 2. Unzip the downloaded Zip file, then a new directory 'calc' will be created.
-3. Type `gem build s_calc` under the directory 'calc', then the gem file `s_calc-0.1.3.gem` is created.
-The number `0.1.3` is the version number.
-4. Type `gem install s_calc-0.1.3`.
+3. Type `gem build s_calc` under the directory 'calc', then the gem file `s_calc-X.X.X.gem` is created.
+The part `X.X.X` is a version number like `0.1.4`.
+4. Type `gem install s_calc-X.X.X.gem`.
 
 Another way is simpler.
 This gem is published to RubyGems.org.
@@ -47,10 +47,10 @@ This is because the name `calc` has already existed in RubyGems.org.
 
 ### How to use the program.
 
-1. Start the terminal and type 'calc'.
-2. Then a prompt appears '$ calc > '
-3. Type an expression like '2+3' and push Enter key, then the answer '5' appears.
-4. Type 'quit', 'q' or 'exit', then the program will finish.
+1. Start the terminal and type `calc`.
+2. Then the prompt appears `calc > `
+3. Type an expression like `2+3` and push Enter key, then the answer `5` appears.
+4. Type `quit`, `q` or `exit`, then the program will finish.
 5. You can also use it as a one line calculator like `$ calc "10*20+30"`.
 
 ### feature
@@ -84,8 +84,8 @@ A defined variable can be used in an expression.
 
 ### Racc library
 
-Racc is a Ruby stabdard library.
-It is a parser generator like Yacc, which is a famous parser generator made for the Unix Operationg system.
+Racc is a Ruby standard library.
+It is a parser generator like Yacc, which is a famous parser generator made for the Unix Operating system.
 Calc uses Racc.
 It makes the library file `lib/calc/calc.rb` with Racc.
 The source file is `racc/calc.y`.
@@ -104,6 +104,25 @@ You can do the following
 - `rake`: Compile `racc/calc.y` and create/update `lib/calc/calc.rb`.
 - `rake rdoc`: Create documents under `docs` directory.
 - `rake test`: Run test programs under `test` directory.
+
+### Using Calc as a library
+
+You can use Calc as a library in your Ruby program.
+
+- First, require 'calc'.
+- Create an instance of the class `Calc`. Let the instance name be 'c'.
+- Call `c.run(s)` where `s` is a string of an expression. Then it returns the value of the expression.
+For example, `c.run("1+2")` returns 3.0.
+
+The following is a sample code.
+
+```ruby
+require 'calc'
+
+c = Calc.new
+s = "1+2"
+print "#{c.run(s)}\n" #=> 3.0
+```
 
 ### License
 
@@ -138,10 +157,10 @@ $
 
 1. 'Code'ボタンをクリックし、現れた小さなダイアログの'Download ZIP'をクリックする
 2. ダウンロードしたZipファイルを解凍する。これにより新しく「calc」ディレクトリが作られ、その中にすべてのファイルが収められる
-3. 「gem build s_calc」を実行することにより、gemファイル「s_calc-0.1.2.gem」が作られる。
-4. 「gem install s_calc-0.1.2」とタイプし、gemをインストールする。
+3. 「gem build s_calc」を実行することにより、gemファイル「s_calc-X.X.X.gem」が作られる。「X.X.X」の部分はバージョン番号で、例えば「0.1.4」のような数字である
+4. 「gem install s_calc-X.X.X.gem」とタイプし、gemをインストールする
 
-別な簡単なインストール方法はRubyGemsからインストールすることです。
+もっと簡単なインストール方法は、RubyGemsからインストールすることです。
 次のようにタイプするだけでgemをダウンロードしインストールします。
 
 ```
@@ -154,9 +173,9 @@ $ gem install s_calc
 ### 使い方
 
 1. 解凍したフォルダで端末（コマンドライン）を起動し、「calc」と入力する
-2. プロンプト「$ calc >」が現れる
+2. プロンプト「calc >」が現れる
 3. 式（例えば2+3）と入力し、エンターキーを押すと、答え「5」が表示される
-4. 「quit」または「exit」とタイプするとプログラムは終了する
+4. 「quit」または「q」または「exit」とタイプするとプログラムは終了する
 5. 引数を付けて一行計算アプリとしても使える。（例）`$ calc "10*20+30"`
 
 ### 特長
@@ -208,6 +227,25 @@ $ rake
 - `rake`: `racc/calc.y`をコンパイルして`lib/calc/calc.rb`を生成する
 - `rake rdoc`: `docs`ディレクトリ以下にドキュメントを生成する
 - `rake test`: `test`ディレクトリの下にあるテストプログラムを実行する
+
+### Calcをライブラリとして使う
+
+CalcをライブラリとしてRubyプログラムの中で使うことができます。
+
+- まず、'calc'をrequireする
+- `Calc`クラスのインスタンスを生成する。仮にその名前を`c`とする
+- 数式を表す文字列を`s`とすると、`c.run(s)`はその数式を計算した値を返す
+例えば、`c.run("1+2")`は3.0を返す。
+
+以下に簡単なサンプルコードを示します。
+
+```ruby
+require 'calc'
+
+c = Calc.new
+s = "1+2"
+print "#{c.run(s)}\n" #=> 3.0
+```
 
 ### ライセンス
 
