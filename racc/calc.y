@@ -58,6 +58,10 @@ def run(s)
   do_parse
 end
 
+alias parse run
+
+private
+
 def lex(s)
   ss = StringScanner.new(s)
   until ss.eos?

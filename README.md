@@ -113,6 +113,8 @@ You can use Calc as a library in your Ruby program.
 - Create an instance of the class `Calc`. Let the instance name be 'c'.
 - Call `c.run(s)` where `s` is a string of an expression. Then it returns the value of the expression.
 For example, `c.run("1+2")` returns 3.0.
+- The instance method `parse` on the class `Calc` is an alias of `run`.
+So, you can use `parse` instead of `run`.
 
 The following is a sample code.
 
@@ -235,7 +237,8 @@ CalcをライブラリとしてRubyプログラムの中で使うことができ
 - まず、'calc'をrequireする
 - `Calc`クラスのインスタンスを生成する。仮にその名前を`c`とする
 - 数式を表す文字列を`s`とすると、`c.run(s)`はその数式を計算した値を返す
-例えば、`c.run("1+2")`は3.0を返す。
+例えば、`c.run("1+2")`は3.0を返す
+- インスタンス・メソッド`run`のエイリアス`parse`を代わりに使うことができる
 
 以下に簡単なサンプルコードを示します。
 

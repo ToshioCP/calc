@@ -39,5 +39,6 @@ class TestCalc < Minitest::Test
     assert_equal 12, @calc.run("floor(12.345)")
     assert_equal 13, @calc.run("ceil(12.345)")
     assert_equal 12.35, @calc.run("round(12.345,2)")
+    assert_equal 12.35, @calc.parse("round(12.345,2)")
   end
 end

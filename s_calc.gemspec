@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name              = 's_calc'
-  s.version           = '0.1.4'
+  s.version           = '0.1.5'
   s.summary           = 'Scientific Calculator'
   s.description       = 'CUI Scientific calculator'
   s.license           = 'GPL-3.0'
